@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Firewall",
+        "description": "In computing, a firewall is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. A firewall typically establishes a barrier between a trusted internal network and untrusted external network, such as the Internet. Firewalls are often categorized as either network firewalls or host-based firewalls. Network firewalls filter traffic between two or more networks and run on network hardware. Host-based firewalls run on host computers and control network traffic in and out of those machines.",
+        "more_info": {
+            "youtube": "https://www.youtube.com/watch?v=mDKKqPxMpb0&list=PLG49S3nxzAnnVhoAaL4B6aMFDQ8_gdxAy&index=44"
+        }
+    },
+    {
+        "name": "Virtual Private Network",
+        "description": "A virtual private network (VPN) extends a private network across a public network and enables users to send and receive data across shared or public networks as if their computing devices were directly connected to the private network. Applications running across a VPN may therefore benefit from the functionality, security, and management of the private network. Encryption is a common, although not an inherent, part of a VPN connection.",
+        "more_info": {
+            "youtube": "https://www.youtube.com/watch?v=sxBQZQM-RNk&list=PLG49S3nxzAnnVhoAaL4B6aMFDQ8_gdxAy&index=45" 
+        }
+    },
+    {
+        "name": "IDS",
+        "description": "An intrusion detection system (IDS) is a device or software application that monitors a network or systems for malicious activity or policy violations. Any intrusion activity or violation is typically reported either to an administrator or collected centrally using a security information and event management system.",
+        "more_info": {
+            "youtube": "https://www.youtube.com/watch?v=hEgWPWIuq_s&list=PLG49S3nxzAnnVhoAaL4B6aMFDQ8_gdxAy&index=46"
+        }
+    },
+    {
+        "name": "IPS",
+        "description": "An intrusion prevention system (IPS) is a form of network security that works to detect and prevent identified threats. Intrusion prevention systems continuously monitor your network, looking for possible malicious incidents and capturing information about them.",
+        "more_info": {
+            "youtube": "https://www.youtube.com/watch?v=hEgWPWIuq_s&list=PLG49S3nxzAnnVhoAaL4B6aMFDQ8_gdxAy&index=46"
+        }
+    },
+    {
+        "name": "Router",
+        "description": "A router is a networking device that forwards data packets between computer networks. Routers perform the traffic directing functions on the Internet. Data sent through the internet, such as a web page or email, is in the form of data packets. A packet is typically forwarded from one router to another router through the networks that constitute an internetwork (e.g. the Internet) until it reaches its destination node.",
+        "more_info": {
+            "youtube": "https://www.youtube.com/watch?v=I7Tmo1RgF3E&list=PLG49S3nxzAnnVhoAaL4B6aMFDQ8_gdxAy&index=47"
+        }
+    },
+    {
+        "name": "Switch",
+        "description": "A network switch (also called switching hub, bridging hub, officially MAC bridge) is networking hardware that connects devices on a computer network by using packet switching to receive and forward data to the destination device. A network switch is a multiport network bridge that uses MAC addresses to forward data at the data link layer (layer 2) of the OSI model. Some switches can also forward data at the network layer (layer 3) by additionally incorporating routing functionality. Such switches are commonly known as layer-3 switches or multilayer switches.",
+        "more_info": {
+            "youtube": "https://www.youtube.com/watch?v=I7Tmo1RgF3E&list=PLG49S3nxzAnnVhoAaL4B6aMFDQ8_gdxAy&index=47"
+        }
+    },
+    {
+        "name": "Proxy",
+        "description": "In computer networking, a proxy server is a server application or appliance that acts as an intermediary for requests from clients seeking resources from servers that provide those resources. A proxy server thus functions on behalf of the client when requesting service, potentially masking the true origin of the request to the resource server.",
+        "more_info": {
+            "youtube": "https://www.youtube.com/watch?v=I7yyVNQzRuo&list=PLG49S3nxzAnnVhoAaL4B6aMFDQ8_gdxAy&index=48"
+        }
+    },
+    {
+        "name": "Load Balancer",
+        "description": "In computing, load balancing refers to the process of distributing a set of tasks over a set of resources (computing units), with the aim of making their overall processing more efficient. Load balancing techniques can optimise the response time for each task, avoiding unevenly overloading compute nodes while other compute nodes are left idle.",
+        "more_info": {
+            "youtube": "https://www.youtube.com/watch?v=NHhuVpD6LyU&list=PLG49S3nxzAnnVhoAaL4B6aMFDQ8_gdxAy&index=49"
+        }
+    },
+    {
+        "name": "Access Point",
+        "description": "",
+        "more_info": {
+            "youtube": "https://www.youtube.com/watch?v=hEgWPWIuq_s&list=PLG49S3nxzAnnVhoAaL4B6aMFDQ8_gdxAy&index=46"
+        }
+    }
+]
