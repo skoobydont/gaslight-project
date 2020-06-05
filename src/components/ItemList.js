@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import ITitem from "./ITitem";
+import Data from '../data.json';
 
 class ItemList extends Component {
-    itemList = ["firewall", "vpn", "intusion detection system", "intrusion prevention system", "router", "switch",
-     "proxy", "load balancer", "access point", "siem", "ssl accelerator", ];
 
+    data = Data
+    
     state = {
-        items: this.itemList
+        items: this.data
     }
     render() {
         return (
