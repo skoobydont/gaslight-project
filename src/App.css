@@ -9,3 +9,7 @@
 .items {
   margin: 0 0 .5rem 0;
 }
+
+.items .card {
+  box-shadow: 0.2rem 0.2rem rgb(161, 161, 161);  
+}

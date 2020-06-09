@@ -2,6 +2,7 @@ import React from 'react';
 
 const ITitem = ({ items }) => {
     console.log(items)
+
     return(
         <div className="row">
             { items.map((item) => (
