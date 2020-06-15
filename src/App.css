@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: #444444;
+  color: #bebebe;
 }
 
 .itemList {
@@ -8,6 +10,7 @@
 
 .items {
   margin: 0 0 .5rem 0;
+  color: #444444;
 }
 
 .items .card {
