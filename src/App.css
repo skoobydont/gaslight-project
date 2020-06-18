@@ -1,11 +1,28 @@
 #root {
-  background-color: #444444;
-
+  background-color: #2b3034;
 }
 
 .App {
   text-align: center;
   color: #bebebe;
+}
+
+.header-nav .navbar {
+  padding: 0rem 1rem;
+}
+
+.header-nav a {
+  display: block;
+  padding: 1.5rem 1rem;
+  color: rgb(95,210,241);
+}
+
+.header-nav a:hover {
+  background: rgb(95,210,241);
+  background: linear-gradient(0deg, rgba(95,210,241,1) 50%, rgba(52,58,64,.5) 100%);
+  color: rgb(52,58,64);
+  text-decoration: none;
+  border-radius: 0rem 0rem .8rem .8rem;
 }
 
 .navbar-brand {
@@ -18,7 +35,7 @@
 
 .items {
   margin: 0 0 .5rem 0;
-  color: #444444;
+  color: #2b3034;
 }
 
 .items .card {

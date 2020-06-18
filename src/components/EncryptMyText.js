@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EncryptTextForm from './EncryptForm';
 
-class WebScrape extends Component {
+class EncryptMyText extends Component {
     render() {
         return(
             <div>
@@ -13,4 +13,4 @@ class WebScrape extends Component {
 
 }
 
-export default WebScrape;
+export default EncryptMyText;

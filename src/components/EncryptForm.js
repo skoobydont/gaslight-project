@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Crypt from 'cryptr';
+import Cryptr from 'cryptr';
 
-const cryptr = new Crypt('dontShareThisKey');
+const cryptr = new Cryptr('dontShareMeWithAnyone');
 
 class EncryptTextForm extends Component {
     constructor(props) {
@@ -15,9 +15,8 @@ class EncryptTextForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    encrypt() {
-        var text = cryptr.encrypt(this.state.value);
-        this.setState( { encryptText: text } );
+    encrypt(input) {
+        this.setState({ encryptText: cryptr.encrypt(input) });
     }
 
     handleChange(event) {
@@ -25,7 +24,8 @@ class EncryptTextForm extends Component {
     }
 
     handleSubmit(event) {
-        this.encrypt();
+        this.encrypt(this.state.value);
+        this.setState({ value: '' });
         event.preventDefault();
     }
 
@@ -37,7 +37,7 @@ class EncryptTextForm extends Component {
                         Enter Text:
                         <input type="text" value={this.state.value} onChange={this.handleChange} />
                     </label>
-                    <input type="submit" value="Submit"/>
+                    <input type="submit" value="Encrypt"/>
                 </form>
                 <textarea value={this.state.encryptText} onChange={this.handleChange}/>
             </div>
