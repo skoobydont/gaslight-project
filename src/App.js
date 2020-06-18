@@ -10,13 +10,14 @@ class App extends Component {
       return (
         <Router>
           <nav className="navbar navbar-dark bg-dark">
+            <img className="navbar-brand" src="./logo192.png" alt="img"/>
             <Link to="/" className="btn btn-primary">Home</Link>
-            <Link to="/webscrape" className="btn btn-primary">Web Scraping</Link>
+            <Link to="/textencrypt" className="btn btn-primary">Text Encryption</Link>
             <Link to="/itteam" className="btn btn-primary">Secure the Network</Link>
           </nav>
           <div className="App container-fluid">
             <Switch>
-              <Route path="/webscrape">
+              <Route path="/textencrypt">
                 <WebScrape />
               </Route>
               <Route path="/itteam">

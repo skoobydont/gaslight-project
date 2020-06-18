@@ -1,7 +1,15 @@
+#root {
+  background-color: #444444;
+
+}
+
 .App {
   text-align: center;
-  background-color: #444444;
   color: #bebebe;
+}
+
+.navbar-brand {
+  max-width: 4rem;
 }
 
 .itemList {
