@@ -6,10 +6,10 @@ class NavComponent extends Component {
         return(
             <div className="header-nav">
                 <nav className="navbar navbar-dark bg-dark">
-                    <img className="navbar-brand" src="./logo192.png" alt="img"/>
-                    <Link to="/" >Home</Link>                            
-                    <Link to="/textencrypt" >Text Encryption</Link>                            
-                    <Link to="/itteam" >Secure the Network</Link>                            
+                    <Link to="/" ><img className="navbar-brand" src="./logo192.png" alt="img"/></Link>                            
+                    <Link to="/textencrypt" className="navigation-link">Text Encryption</Link>                            
+                    <Link to="/itteam" className="navigation-link">Secure the Network</Link>
+                    <Link to="/meanpi" className="navigation-link">MEAN Pi</Link>                         
                 </nav>
             </div>
         )

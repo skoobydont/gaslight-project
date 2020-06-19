@@ -11,13 +11,13 @@
   padding: 0rem 1rem;
 }
 
-.header-nav a {
+.header-nav a.navigation-link {
   display: block;
   padding: 1.5rem 1rem;
   color: rgb(95,210,241);
 }
 
-.header-nav a:hover {
+.header-nav a.navigation-link:hover {
   background: rgb(95,210,241);
   background: linear-gradient(0deg, rgba(95,210,241,1) 50%, rgba(52,58,64,.5) 100%);
   color: rgb(52,58,64);
@@ -27,7 +27,14 @@
 
 .navbar-brand {
   max-width: 4rem;
+  padding: .2rem;
 }
+
+.navbar-brand:hover {
+  background: rgb(95,210,241);
+  background: radial-gradient(circle, transparent 0%, rgb(95,210,241) 45%, transparent 75%);
+}
+
 
 .itemList {
   padding: 1rem;

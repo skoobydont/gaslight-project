@@ -11,6 +11,9 @@ class LandingPage extends Component {
                 <p>Below are some of the topics I am currently learning about:</p>
                 <ul>
                     <li>JavaScript (React framework primarily)</li>
+                    <ul>
+                        <li>ME(A/R)N Stack</li>
+                    </ul>
                     <li>Web Scraping (with Python)</li>
                     <li>Network Security (cyber security in general)</li>
                 </ul>

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import EncryptText from './components/EncryptMyText';
 import LandingPage from './components/LandingPage';
+import MEANPi from './components/mernPi/MEANPi';
 
 class App extends Component {
   render(){
@@ -13,6 +14,9 @@ class App extends Component {
           <Nav />
           <div className="App container-fluid">
             <Switch>
+              <Route path="/meanpi">
+                <MEANPi />
+              </Route>
               <Route path="/textencrypt">
                 <EncryptText />
               </Route>
