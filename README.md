@@ -1,5 +1,7 @@
 #This project is designed to demonstrate React.js framework capabilities and share insight on many of the security components used in network security.
 
+I have since expanded it to include Text Encryption with the Node library cryptr and plan to document my progress learning the MEAN stack (substituting AngularJS for ReactJS).
+
 To get started:
 <ol>
     <li>Clone the repository to your machine</li>
