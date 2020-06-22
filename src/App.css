@@ -35,7 +35,6 @@
   background: radial-gradient(circle, transparent 0%, rgb(95,210,241) 45%, transparent 75%);
 }
 
-
 .itemList {
   padding: 1rem;
 }
@@ -47,4 +46,8 @@
 
 .items .card {
   box-shadow: 0.2rem 0.2rem rgb(161, 161, 161);  
+}
+
+.meanpi a {
+  color: rgb(95,210,241);
 }
