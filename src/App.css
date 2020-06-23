@@ -1,4 +1,4 @@
-#root {
+#root, html {
   background-color: #2b3034;
 }
 
@@ -49,5 +49,13 @@
 }
 
 .meanpi a {
+  color: rgb(95,210,241);
+}
+
+#mernAccordion .card {
+  background-color: #2b3034;
+}
+
+#mernAccordion button {
   color: rgb(95,210,241);
 }
