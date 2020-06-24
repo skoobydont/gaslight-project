@@ -5,16 +5,29 @@ class WorkFlow extends Component {
         return(
             <div className="mernpi-workflow">
                 <ol>
-                    <li>Configure Raspberry Pi with Debian</li>
-                    <li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-debian-10" rel="noopener noreferrer" target="_blank">Install Node and npm</a></li>
-                    <code> sudo apt install nodejs npm </code> and verify installation with <code> node -v </code> and <code> npm -v </code>
-                    <li><a href="https://www.instructables.com/id/How-to-Make-a-Web-Server-With-a-Raspberry-Pi/" rel="noopener noreferrer" target="_blank">Install Express</a></li>
-                    <code>sudo npm install express -g</code>
-                    <li><a href="https://pimylifeup.com/mongodb-raspberry-pi/" rel="noopener noreferrer" target="_blank">Install MongoDB</a></li>
-                    <code>sudo apt install mongodb</code>
-                    <li>Install React</li>
-                    <code>sudo npm install react -g</code>
-                    <li>Next, we will set up a MongoDB instance that the Express API will interact with. Our React App will consume said Express API</li>
+                    <li>First verify that node is installed on your machine:</li>
+                    <code>node -v</code>
+                    <li>Next install required dependencies: 
+                        <ul>
+                            <li>React: <code>npm install react -g</code>
+                                <ul>
+                                    <li>To run the React application, run <code>npm start</code></li>
+                                </ul>
+                            </li>
+                            <li>Express: <code>npm install express</code>
+                                <ul>
+                                    <li>To initialize the server, run <code>npm run devStart</code></li>
+                                </ul>
+                            </li>
+                            <li>Mongoose (as a middleware between Express and MongoDB): <code>npm install mongoose</code></li>
+                        </ul>
+                    </li>
+                    <li>There are a couple of development dependencies to install also: 
+                        <ul>
+                            <li>Dotenv (to pull environment variables from a .env file) and Nodemon (to refresh server when changes are made without manually ending and restarting)</li>
+                            <li>can be executed in a single command: <code>npm i --save-dev dotenv nodemon</code></li>                            
+                        </ul>
+                    </li>
                 </ol>
             </div>
         )

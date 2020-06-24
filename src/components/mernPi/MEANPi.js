@@ -6,7 +6,7 @@ class MEANPi extends Component {
     render() {
         return(
             <div className="meanpi">
-                <h2>ME(A/R)N Pi</h2>
+                <h2>ME(A/R)N Stack</h2>
                 <p>ME(A/R)N is an acronym for the JavaScript stack consisting of:</p>
                 <div className="accordion" id="mernAccordion">
                     <PiComponent title="MongoDB" info="https://en.wikipedia.org/wiki/MongoDB" 
@@ -20,8 +20,8 @@ class MEANPi extends Component {
                 </div><br/>
                 <p>MEAN is a free and open-source JavaScript software stack for building dynamic web sites and web applications.</p>
                 <p>Because all components of the MEAN stack support programs that are written in JavaScript, one language can be used to develop both server-side and client-side execution environments</p>
-                <p>This component will document the process of my research and implementation of the MERN Stack on a Raspberry Pi</p>
-                <small>(I have more experience with React over Angular; even though saying that I'm working on a MEAN Pi sounds cooler)</small>
+                <p>This component will document the process of my research and implementation of the MERN Stack</p>
+                <small>(I have more experience with React over Angular)</small>
                 <h2>General Steps Outline</h2>
                 <WorkFlow />
             </div>
