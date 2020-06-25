@@ -17,6 +17,7 @@ class LandingPage extends Component {
                     <li>Web Scraping (with Python)</li>
                     <li>Network Security (cyber security in general)</li>
                 </ul>
+                <h2>Database Test</h2>
             </div>
         )
     }

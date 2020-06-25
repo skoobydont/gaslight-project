@@ -7,6 +7,7 @@ class WorkFlow extends Component {
                 <ol>
                     <li>First verify that node is installed on your machine:</li>
                     <code>node -v</code>
+                    <li><a href="https://www.mongodb.com/try/download/community" rel="noopener noreferrer" target="_blank">Install MongoDB</a></li>
                     <li>Next install required dependencies: 
                         <ul>
                             <li>React: <code>npm install react -g</code>

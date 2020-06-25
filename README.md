@@ -1,13 +1,5 @@
-#This project is designed to demonstrate React.js framework capabilities and share insight on many of the security components used in network security.
+This project is designed to demonstrate React.js framework capabilities and share insight on many of the security components used in network security.
 
-I have since expanded it to include Text Encryption with the Node library cryptr and plan to document my progress learning the MEAN stack (substituting AngularJS for ReactJS).
+I have since expanded it to include Text Encryption with the Node library cryptr and plan to document my progress learning the MERN stack.
 
-To get started:
-<ol>
-    <li>Clone the repository to your machine</li>
-    <li>Check that node is installed with <code>npm -v</code> or <code>npm --version</code>
-    <li>Navigate to the project folder with <code>cd react-it-team</code></li>
-    <li>Install necessary node modules with <code>npm install</code></li>
-    <li>Start the node server with <code>npm start</code></li>
-    <li>You can then find the application running on port 3000</li>
-</ol>
+While the majority of the application and api files can be found within this project, I am working on deploying the application to a <a href="https://www.heroku.com/free" rel="noopener noreferrer" target="_blank">Heroku</a> application instance and consume a <a href="https://www.mongodb.com/cloud/atlas" rel="noopener noreferrer" target="_blank">MongoDB Atlas</a> database (currently reseasrching more about the process behind moving everything)
