@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/users', async (req, res) => {
+router.get('/test', async (req, res) => {
     try {
         res.json([
             { id: 1, username: "u1", dateCreated: Date.now() },
