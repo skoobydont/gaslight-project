@@ -9,7 +9,8 @@ class NavComponent extends Component {
                     <Link to="/" ><img className="navbar-brand" src="./logo192.png" alt="img"/></Link>                            
                     <Link to="/textencrypt" className="navigation-link">Text Encryption</Link>                            
                     <Link to="/itteam" className="navigation-link">Secure the Network</Link>
-                    <Link to="/meanpi" className="navigation-link">MEAN Stack</Link>                         
+                    <Link to="/meanpi" className="navigation-link">MEAN Stack</Link>
+                    <Link to="/mui" className="navigation-link">Mui</Link>
                 </nav>
             </div>
         )

@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import EncryptText from './components/EncryptMyText';
 import LandingPage from './components/LandingPage';
 import MEANPi from './components/mernPi/MEANPi';
+import MuiContainer from './components/materialUI/MuiContainer';
 
 class App extends Component {
   render(){
@@ -22,6 +23,9 @@ class App extends Component {
               </Route>
               <Route path="/itteam">
                 <ItemList />
+              </Route>
+              <Route path="/mui">
+                <MuiContainer />
               </Route>
               <Route path="/">
                 <LandingPage />
