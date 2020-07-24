@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const path = require('path')
 //routers
 const router = require('./routes/routes')
 const userRouter = require('./routes/user')
@@ -21,11 +22,11 @@ db.once('open', () => console.log('Connected to Database'))
 app.use(cors())
 app.use(express.json())
 //serve static files from react app
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname+'client/build')));
 
 //catchall handler: serve react's index.html file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
 //routers
