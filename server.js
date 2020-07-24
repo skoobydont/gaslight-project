@@ -22,11 +22,11 @@ db.once('open', () => console.log('Connected to Database'))
 app.use(cors())
 app.use(express.json())
 //serve static files from react app
-app.use(express.static(path.join(__dirname+'client/build')));
+app.use(express.static(path.join(__dirname+'client/src')));
 
 //catchall handler: serve react's index.html file
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/client/build/index.html'));
+    res.sendFile(path.join(__dirname, '/client/public/index.html'));
 });
 
 //routers
