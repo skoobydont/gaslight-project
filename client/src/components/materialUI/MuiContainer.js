@@ -1,9 +1,12 @@
 import React, { useState, useReducer } from 'react';
 
 // material ui
-import { Grid, Card, CardActions, Typography, CardContent, IconButton, Collapse } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles';
+//Core
+import { Grid, Card, CardActions, Typography, CardContent, IconButton, Collapse, TextField, CardHeader } from '@material-ui/core'
 import { green, orange, red } from '@material-ui/core/colors';
+//Styles
+import { makeStyles } from '@material-ui/core/styles';
+//Icons
 import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -14,10 +17,13 @@ const useStyles = makeStyles({
     grid: {
         flexGrow: 1,
         marginTop: '1rem',
+        justifyContent: 'space-evenly'
     },
     todo: {
         backgroundColor: '#343a40',
-        color: '#5fd1f1'
+        color: '#5fd1f1',
+        marginBottom: '0.5rem',
+        padding: '0.8rem'
     },
     actionIcons: {
         justifyContent: 'space-evenly'
@@ -55,6 +61,33 @@ const useStyles = makeStyles({
         backgroundColor: '#2b3034',
         color: '#5fd1f1',
         textDecoration: 'line-through'
+    },
+    inputDate: {
+        borderColor: '#5fd1f1',
+        margin: '1.5rem 0rem',
+        '& .MuiInputBase-root': {
+            color: '#5fd1f1',
+            '&:after': {
+                color: '#5fd1f1'
+            }
+        },
+        '& .Mui-focused': {
+            color: '#5fd1f1',
+            '& fieldset.MuiOutlinedInput-notchedOutline': {
+                borderColor: '#5fd1f1',
+            },
+        },
+        '& label.Mui-focused': {
+            color: '#5fd1f1'
+        }
+    },
+    inputTitle: {
+        color: '#5fd1f1',
+        backgroundColor: '#343a40',
+        '&:focus': {
+            borderColor: '#5fd1f1',
+            outline: '#5fd1f1'
+        }
     }
 });
 
@@ -63,13 +96,13 @@ const ACTIONS = {
     ADD_TODO: 'add-todo',
     DELETE_TODO: 'delete-todo',
     TOGGLE_COMPLETE: 'toggle-complete',
-    UPDATE_TODO_TITLE: 'update-todo'
+    UPDATE_TODO: 'update-todo'
 }
 // dispatcher 
 const reducer = (todos, action) => {
     switch(action.type) {
         case ACTIONS.ADD_TODO:
-            return [...todos, newTodo(action.payload.title)];
+            return [...todos, newTodo(action.payload.title, action.payload.dueDate)];
         case ACTIONS.TOGGLE_COMPLETE:
             return todos.map(todo => {
                 if(todo.id === action.payload.id) {
@@ -79,7 +112,7 @@ const reducer = (todos, action) => {
             });
         case ACTIONS.DELETE_TODO:
             return todos.filter(todo => todo.id !== action.payload.id);
-        case ACTIONS.UPDATE_TODO_TITLE:
+        case ACTIONS.UPDATE_TODO:
             return todos.map(todo => {
                 if(todo.id === action.payload.id) {
                     return { ...todo, title: action.payload.title }
@@ -91,25 +124,27 @@ const reducer = (todos, action) => {
     }
 }
 // helper functions for dispatcher
-const newTodo = (title) => {
-    return { id: Date.now(), title: title, completed: false }
+const newTodo = (title, dueDate) => {
+    return { id: Date.now(), title: title, completed: false, dueDate: dueDate }
 }
 
 // to-do task component
 const TodoTask = ({ todo, dispatch }) => {
     const styles = useStyles();
     const [updatedTitle, setUpdatedTitle] = useState('');
+    //TODO update due date maybe
+    const [updatedDueDate, setUpdatedDueDate] = useState(Date.now());
     const [expanded, setExpanded] = useState(false);
     const handleCollapse = () => {
         setExpanded(!expanded);
     }
-    const handleOnChange = (event) => {
+    const handleOnTitleChange = (event) => {
         setUpdatedTitle(event.target.value);
     }
     const handleUpdate = (event) => {
         event.preventDefault();
         dispatch({
-            type: ACTIONS.UPDATE_TODO_TITLE, 
+            type: ACTIONS.UPDATE_TODO, 
             payload: { id: todo.id, title: updatedTitle }
         });
         setUpdatedTitle('');
@@ -117,9 +152,10 @@ const TodoTask = ({ todo, dispatch }) => {
 
     return(
         <Card id={todo.id} className={todo.complete ? styles.completedTask : styles.todo}>
+            <CardHeader title={todo.title}/>
             <CardContent>
                 <Typography>
-                    {todo.title}
+                    Due on: {todo.dueDate}
                 </Typography>
             </CardContent>
             <CardActions className={styles.actionIcons}>
@@ -140,7 +176,7 @@ const TodoTask = ({ todo, dispatch }) => {
             <Collapse in={expanded}>
                 <CardContent>
                     <form onSubmit={handleUpdate}>
-                        <input placeholder="update title" value={updatedTitle} onChange={handleOnChange} />
+                        <input placeholder="update title" value={updatedTitle} onChange={handleOnTitleChange} />
                         <IconButton className={styles.addIcon} type="submit" >
                             <EditIcon />
                         </IconButton>
@@ -150,6 +186,7 @@ const TodoTask = ({ todo, dispatch }) => {
         </Card>
     )
 }
+
 // main component
 const MuiContainer = () => {
     const styles = useStyles();
@@ -157,36 +194,64 @@ const MuiContainer = () => {
     const [todos, dispatch] = useReducer(reducer, []);
     //store title of todo in state
     const [title, setTodoTitle] = useState('');
+    //store dueDate of todo in state
+    const [dueDate, setDueDate] = useState('');
+    //handle due Date change
+    const handleDueDateChange = (event) => {
+        setDueDate(event.target.value);
+    }
     //when submit new todo, send to dispatcher and reset input field
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch({ type: ACTIONS.ADD_TODO, payload: { title: title} });
+        dispatch({ type: ACTIONS.ADD_TODO, payload: { title: title, dueDate: dueDate} });
         setTodoTitle('');
+        setDueDate('');
     }
     
     console.log(todos)
 
     return(
        <Grid container spacing={3} className={styles.grid}>
-           <Grid item xs={12}>
-               <Typography>
-                   Enter New Todo &amp; See Reducer In Action
-               </Typography>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="enter title of todo" value={title} onChange={e => setTodoTitle(e.target.value)} />
-                    <IconButton className={styles.addIcon} type="submit" >
-                        <AddIcon />
-                    </IconButton>
-                </form>
-           </Grid>
-           {
-               todos.map((obj, index) => {
-                   return <Grid item xs={12} key={index}>
-                       <TodoTask todo={obj} dispatch={dispatch} />
-                    </Grid>
-               })
-           }
-       </Grid>
+            <Grid item xs={4}>
+                <Card className={styles.todo}>
+                    <CardHeader
+                        title="Enter New Todo &amp; See React Reducer In Action"
+                    />
+                    <hr/>
+                    <CardContent>
+                        <form onSubmit={handleSubmit}>
+                            <input type="text" placeholder="enter title of todo" value={title} onChange={e => setTodoTitle(e.target.value)} className={styles.inputTitle} />
+                            <br/>
+                            <TextField
+                                id="dueDate"
+                                label="Due Date"
+                                type="date"
+                                variant="outlined"
+                                defaultValue={Date.now()}
+                                value={dueDate}
+                                onChange={handleDueDateChange}
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                
+                                className={styles.inputDate}
+                            />
+                            <br/>
+                            <IconButton className={styles.addIcon} type="submit" >
+                                <AddIcon />
+                            </IconButton>
+                        </form>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={6} >
+            {
+                todos.map(obj => {
+                    return <TodoTask todo={obj} dispatch={dispatch} />
+                })
+            }
+            </Grid>
+        </Grid>
     )
 }
 
