@@ -102,8 +102,10 @@ const ACTIONS = {
 const reducer = (todos, action) => {
     switch(action.type) {
         case ACTIONS.ADD_TODO:
+            //return all todos plus new one via helper function
             return [...todos, newTodo(action.payload.title, action.payload.dueDate)];
         case ACTIONS.TOGGLE_COMPLETE:
+            //find todo with passed id and toggle complete value
             return todos.map(todo => {
                 if(todo.id === action.payload.id) {
                     return { ...todo, complete: !todo.complete }
@@ -111,11 +113,23 @@ const reducer = (todos, action) => {
                 return todo
             });
         case ACTIONS.DELETE_TODO:
+            //return only todos that don't have passed id
             return todos.filter(todo => todo.id !== action.payload.id);
         case ACTIONS.UPDATE_TODO:
+            //there's gotta be a better way to handle updating only values passed to update
             return todos.map(todo => {
                 if(todo.id === action.payload.id) {
-                    return { ...todo, title: action.payload.title }
+                    //i really dont like that i have to do these three if statements to get this to work correctly
+                    //if both fields are blank, return original todo
+                    if(action.payload.title === '' && action.payload.dueDate === '') {
+                        return { ...todo }
+                    //if the title is different and not blank, update title
+                    } else if(action.payload.title !== todo.title && action.payload.title !== '') {
+                        return { ...todo, title: action.payload.title }
+                    //if due date is different and not blank, update due date
+                    } else if(action.payload.dueDate !== todo.dueDate && action.payload.dueDate !== '') {
+                        return { ...todo, dueDate: action.payload.dueDate }
+                    }
                 }
                 return todo
             });
@@ -131,23 +145,31 @@ const newTodo = (title, dueDate) => {
 // to-do task component
 const TodoTask = ({ todo, dispatch }) => {
     const styles = useStyles();
+    //store update title
     const [updatedTitle, setUpdatedTitle] = useState('');
-    //TODO update due date maybe
-    const [updatedDueDate, setUpdatedDueDate] = useState(Date.now());
+    //store update due date
+    const [updatedDueDate, setUpdatedDueDate] = useState('');
+    //handle edit collapse
     const [expanded, setExpanded] = useState(false);
     const handleCollapse = () => {
         setExpanded(!expanded);
     }
+    //handle update title and due date on change
     const handleOnTitleChange = (event) => {
         setUpdatedTitle(event.target.value);
     }
+    const handleOnDueDateChange = (event) => {
+        setUpdatedDueDate(event.target.value);
+    }
+    //handle update call to dispatcher
     const handleUpdate = (event) => {
         event.preventDefault();
         dispatch({
             type: ACTIONS.UPDATE_TODO, 
-            payload: { id: todo.id, title: updatedTitle }
+            payload: { id: todo.id, title: updatedTitle, dueDate: updatedDueDate }
         });
         setUpdatedTitle('');
+        setUpdatedDueDate('');
     }
 
     return(
@@ -164,7 +186,7 @@ const TodoTask = ({ todo, dispatch }) => {
                 )}>
                     <DoneIcon />
                 </IconButton>
-                <IconButton className={styles.editIcon} onClick={handleCollapse}>
+                <IconButton className={styles.editIcon} onClick={handleCollapse} disabled={todo.complete ? true : false }>
                     <EditIcon />
                 </IconButton>
                 <IconButton className={styles.deleteIcon} onClick={() => dispatch(
@@ -176,8 +198,33 @@ const TodoTask = ({ todo, dispatch }) => {
             <Collapse in={expanded}>
                 <CardContent>
                     <form onSubmit={handleUpdate}>
-                        <input placeholder="update title" value={updatedTitle} onChange={handleOnTitleChange} />
-                        <IconButton className={styles.addIcon} type="submit" >
+                        <TextField
+                            id="updatedTitle"
+                            label="Title"
+                            type="text"
+                            variant="outlined"
+                            value={updatedTitle}
+                            onChange={handleOnTitleChange}
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+                            disabled={todo.complete ? true : false }
+                            className={styles.inputDate}
+                        />
+                        <TextField
+                            id="updatedDueDate"
+                            label="Due Date"
+                            type="date"
+                            variant="outlined"
+                            value={updatedDueDate}
+                            onChange={handleOnDueDateChange}
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+                            disabled={todo.complete ? true : false }
+                            className={styles.inputDate}
+                        />
+                        <IconButton className={styles.addIcon} type="submit" disabled={todo.complete ? true : false } >
                             <EditIcon />
                         </IconButton>
                     </form>
@@ -227,7 +274,6 @@ const MuiContainer = () => {
                                 label="Due Date"
                                 type="date"
                                 variant="outlined"
-                                defaultValue={Date.now()}
                                 value={dueDate}
                                 onChange={handleDueDateChange}
                                 InputLabelProps={{
@@ -246,8 +292,8 @@ const MuiContainer = () => {
             </Grid>
             <Grid item xs={6} >
             {
-                todos.map(obj => {
-                    return <TodoTask todo={obj} dispatch={dispatch} />
+                todos.map((obj, index) => {
+                    return <TodoTask key={index} todo={obj} dispatch={dispatch} />
                 })
             }
             </Grid>
