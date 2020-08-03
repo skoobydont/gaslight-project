@@ -2,7 +2,7 @@ import React, { useState, useReducer } from 'react';
 
 // material ui
 //Core
-import { Grid, Card, CardActions, Typography, CardContent, IconButton, Collapse, TextField, CardHeader } from '@material-ui/core'
+import { Grid, Card, CardActions, Typography, CardContent, IconButton, Collapse, TextField, CardHeader, Button, Popover } from '@material-ui/core'
 import { green, orange, red } from '@material-ui/core/colors';
 //Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -88,7 +88,11 @@ const useStyles = makeStyles({
             borderColor: '#5fd1f1',
             outline: '#5fd1f1'
         }
-    }
+    },
+    filterButton: {
+        borderColor: '#5fd1f1',
+        color: '#5fd1f1'
+    },
 });
 
 //dispatch actions
@@ -139,7 +143,7 @@ const reducer = (todos, action) => {
 }
 // helper functions for dispatcher
 const newTodo = (title, dueDate) => {
-    return { id: Date.now(), title: title, completed: false, dueDate: dueDate }
+    return { id: Date.now(), title: title, completed: false, dueDate: dueDate, createdOnDate: Date.now() }
 }
 
 // to-do task component
@@ -243,6 +247,20 @@ const MuiContainer = () => {
     const [title, setTodoTitle] = useState('');
     //store dueDate of todo in state
     const [dueDate, setDueDate] = useState('');
+    //store popover open anchor element
+    const [anchorEl, setAnchorEl] = useState(null);
+    //handle clicking popover button
+    const handlePopoverClick = (e) => {
+        setAnchorEl(e.currentTarget);
+    }
+    //handle closing popover
+    const handlePopoverClose = () => {
+        setAnchorEl(null);
+    }
+    //popover open element
+    const openPopover = Boolean(anchorEl);
+    //const for popover id
+    const filterTodos = openPopover ? 'todo-popover' : undefined;
     //handle due Date change
     const handleDueDateChange = (event) => {
         setDueDate(event.target.value);
@@ -283,10 +301,29 @@ const MuiContainer = () => {
                                 className={styles.inputDate}
                             />
                             <br/>
-                            <IconButton className={styles.addIcon} type="submit" >
+                            <IconButton className={styles.addIcon} type="submit" disabled={dueDate === '' || title === ''}>
                                 <AddIcon />
                             </IconButton>
                         </form>
+                        <Button disabled={todos.length === 0} aria-describedby={filterTodos} onClick={handlePopoverClick} className={styles.filterButton}>
+                            Sort By
+                        </Button>
+                        <Popover 
+                            id={filterTodos}
+                            open={openPopover}
+                            anchorEl={anchorEl}
+                            onClose={handlePopoverClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'center'
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'center'
+                            }}
+                        >
+                            List of sorting options: created date, due date, title etc
+                        </Popover>
                     </CardContent>
                 </Card>
             </Grid>
