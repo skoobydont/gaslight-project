@@ -2,7 +2,7 @@ import React, { useState, useReducer } from 'react';
 
 // material ui
 //Core
-import { Grid, Card, CardActions, Typography, CardContent, IconButton, Collapse, TextField, CardHeader, Button, Popover } from '@material-ui/core'
+import { Grid, Card, CardActions, Typography, CardContent, IconButton, Collapse, TextField, CardHeader, Button, Popover, List, ListItem } from '@material-ui/core'
 import { green, orange, red } from '@material-ui/core/colors';
 //Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -60,7 +60,9 @@ const useStyles = makeStyles({
     completedTask: {
         backgroundColor: '#2b3034',
         color: '#5fd1f1',
-        textDecoration: 'line-through'
+        textDecoration: 'line-through',
+        marginBottom: '0.5 rem',
+        padding: '0.8rem'
     },
     inputDate: {
         borderColor: '#5fd1f1',
@@ -100,7 +102,8 @@ const ACTIONS = {
     ADD_TODO: 'add-todo',
     DELETE_TODO: 'delete-todo',
     TOGGLE_COMPLETE: 'toggle-complete',
-    UPDATE_TODO: 'update-todo'
+    UPDATE_TODO: 'update-todo',
+    SORTBY_DUEDATE: 'sortby-duedate',
 }
 // dispatcher 
 const reducer = (todos, action) => {
@@ -137,6 +140,8 @@ const reducer = (todos, action) => {
                 }
                 return todo
             });
+        case ACTIONS.SORTBY_DUEDATE:
+            return todos.sort().reverse();
         default:
             return todos;
     }
@@ -272,6 +277,13 @@ const MuiContainer = () => {
         setTodoTitle('');
         setDueDate('');
     }
+
+    const handleSortByDueDate = () => {
+        dispatch({
+            type: ACTIONS.SORTBY_DUEDATE
+        });
+        handlePopoverClose();
+    }
     
     console.log(todos)
 
@@ -322,6 +334,13 @@ const MuiContainer = () => {
                                 horizontal: 'center'
                             }}
                         >
+                            <List>
+                                <ListItem>
+                                    <Button onClick={handleSortByDueDate}>
+                                        Sort by DueDate
+                                    </Button>
+                                </ListItem>
+                            </List>
                             List of sorting options: created date, due date, title etc
                         </Popover>
                     </CardContent>
